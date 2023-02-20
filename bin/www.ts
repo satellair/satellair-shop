@@ -1,40 +1,17 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
+import app from "@/app"
+import Debug, { Debugger } from 'debug';
+import http, { Server } from 'http';
 
-const app = require('../app');
-const debug = require('debug')('satelliar:server');
-const http = require('http');
-
-/**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+const debug: Debugger = Debug('satellair-shop:server');
 
 /**
  * Normalize a port into a number, string, or false.
  */
-
-function normalizePort(val) {
-  const port = parseInt(val, 10);
+const normalizePort = (val: string | number): string | number | false => {
+  const port = parseInt(String(val), 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -52,8 +29,7 @@ function normalizePort(val) {
 /**
  * Event listener for HTTP server "error" event.
  */
-
-function onError(error) {
+const onError = (error: NodeJS.ErrnoException): void => {
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -80,11 +56,28 @@ function onError(error) {
 /**
  * Event listener for HTTP server "listening" event.
  */
-
-function onListening() {
+const onListening = (): void => {
   const addr = server.address();
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
-    : 'port ' + addr.port;
+    : 'port ' + addr?.port;
   debug('Listening on ' + bind);
 }
+
+/**
+ * Get port from environment and store in Express.
+ */
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+const server: Server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
