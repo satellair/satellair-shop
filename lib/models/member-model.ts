@@ -1,6 +1,8 @@
 // create mongoose user models
 import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcryptjs'
+import { TEL_REGEX } from '@utils/validate-pattern'
+
 import type { MemberDocument } from '@type/member'
 
 const schema = new Schema<MemberDocument>(
@@ -39,7 +41,7 @@ const schema = new Schema<MemberDocument>(
       required: true,
       trim: true,
       maxlength: 10,
-      match: [/^0[0-9]{9}$/, 'Invalid phone number'],
+      match: [TEL_REGEX, 'Invalid phone number'],
     },
     status: {
       type: String,
