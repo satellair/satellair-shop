@@ -45,6 +45,11 @@ const schema = new Schema<MemberDocument>(
       required: true,
       default: 'active',
     },
+    role: {
+      type: String,
+      required: true,
+      default: 'member',
+    }
   },
   {
     collection: 'members',
@@ -62,7 +67,6 @@ schema.methods.checkPassword = function (password: string): boolean {
   const isValid = bcrypt.compareSync(password, this.password)
   return isValid
 }
-
 const Member = mongoose.model<MemberDocument>('Members', schema)
 
 export default Member

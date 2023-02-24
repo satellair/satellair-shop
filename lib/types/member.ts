@@ -8,11 +8,12 @@ interface Member {
   password: string
   tel: string
   status: 'active' | 'inactive' | 'suspended' | 'terminated'
+  role: 'admin' | 'member'
 }
 
 interface MemberDocument extends Member, Document {
   encryptPassword: (password: string) => string
-  checkpassword: (password: string) => boolean
+  checkPassword: (password: string) => boolean
 }
 
 interface MemberModel extends Model<MemberDocument>, Member {
