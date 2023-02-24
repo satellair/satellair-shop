@@ -39,6 +39,7 @@ const schema = new Schema<MemberDocument>(
       required: true,
       trim: true,
       maxlength: 10,
+      match: [/^0[0-9]{9}$/, 'Invalid phone number'],
     },
     status: {
       type: String,
