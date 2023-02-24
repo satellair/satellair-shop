@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "tsnd -r tsconfig-paths/register --rs ./bin/www",
     "start": "node ./dist/index.js",
-    "start:ts": "ts-node -r tsconfig-paths/register ./lib/bin/www",
+    "start:ts": "ts-node -r tsconfig-paths/register ./bin/www",
     "prettier-format": "prettier --config .prettierrc 'lib/**/*.ts' 'bin/**/*.ts' --write",
     "build": "esbuild ./bin/www --bundle --platform=node --bundle --minify --outfile=dist/index.js"
   },
