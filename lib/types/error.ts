@@ -1,5 +1,7 @@
+import type { ValidationError } from 'express-validator'
 interface ErrorHandler extends Error {
-  status?: number;
+  statusCode?: number
+  validation?: ValidationError[]
 }
 
 export { ErrorHandler }
