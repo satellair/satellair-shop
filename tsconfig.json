@@ -83,7 +83,7 @@
     // "strictBindCallApply": true,                      /* Check that the arguments for 'bind', 'call', and 'apply' methods match the original function. */
     // "strictPropertyInitialization": true,             /* Check for class properties that are declared but not set in the constructor. */
     // "noImplicitThis": true,                           /* Enable error reporting when 'this' is given the type 'any'. */
-    // "useUnknownInCatchVariables": true,               /* Default catch clause variables as 'unknown' instead of 'any'. */
+    "useUnknownInCatchVariables": true                   /* Default catch clause variables as 'unknown' instead of 'any'. */,
     // "alwaysStrict": true,                             /* Ensure 'use strict' is always emitted. */
     // "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
     // "noUnusedParameters": true,                       /* Raise an error when a function parameter isn't read. */
@@ -105,25 +105,21 @@
       "@config/*": ["lib/config/*"],
       "@controllers": ["lib/controllers/index.ts"],
       "@controllers/*": ["lib/controllers/*"],
-      "@middleware": ["lib/middleware/index.ts"],
+      "@middlewares": ["lib/middlewares/index.ts"],
       "@middlewares/*": ["lib/middlewares/*"],
       "@models": ["lib/models/index.ts"],
       "@models/*": ["lib/models/*"],
       "@routes": ["lib/routes/index.ts"],
       "@routes/*": ["lib/routes/*"],
+      "@schemas": ["lib/schemas/index.ts"],
+      "@schemas/*": ["lib/schemas/*"],
+      "@type": ["lib/types/index.ts"],
       "@type/*": ["lib/types/*"],
       "@utils": ["lib/utils/index.ts"],
       "@utils/*": ["lib/utils/*"]
       // "@views/*": ["views/*"],
     },
-    "useUnknownInCatchVariables": false
   },
-  "include": [
-    "lib/**/*",
-    "views/**/*",
-    "lib/middlewares/error-handling.middleware.ts",
-    "lib/app.ts",
-    "bin/www.ts"
-  ],
+  "include": ["lib/**/*", "views/**/*", "lib/middlewares/error-handling.ts", "lib/app.ts", "bin/www.ts"],
   "exclude": ["node_modules", "dist", "lib/config/keys.ts"]
 }
