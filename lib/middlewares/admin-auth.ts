@@ -14,7 +14,7 @@ const isAdmin: ExpressControllerSync = (req, res, next) => {
   const { role } = req.user as Member
 
   if (role === 'admin') {
-    next();
+    next()
   } else {
     return res.status(statusCode.FORBIDDEN).json({
       error: {
@@ -22,6 +22,6 @@ const isAdmin: ExpressControllerSync = (req, res, next) => {
       },
     })
   }
-};
+}
 
-export default isAdmin;
+export default isAdmin

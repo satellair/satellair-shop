@@ -49,7 +49,7 @@ const schema = new Schema<MemberDocument>(
       type: String,
       required: true,
       default: 'member',
-    }
+    },
   },
   {
     collection: 'members',
