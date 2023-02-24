@@ -1,6 +1,6 @@
 import type { Schema } from 'mongoose'
 
-type ProductCategory =
+export type ProductCategory =
   | 'tops'
   | 'bottoms'
   | 'skirts'
@@ -10,7 +10,8 @@ type ProductCategory =
   | 'accessories'
   | 'bags'
   | 'others'
-type ProductTags = 'new' | 'hot' | 'sale' | 'recommend' | 'none'
+export type ProductTags = 'new' | 'hot' | 'sale' | 'recommend' | 'none'
+export type SKUSize = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL' | 'none'
 type b64 = string
 
 interface IProduct {
@@ -24,12 +25,11 @@ interface IProduct {
 interface IProductSKU extends IProduct {
   product_id: Schema.Types.ObjectId
   color: string
-  size: 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL' | 'none'
+  size: SKUSize
   price: number
-  tags: ProductTags
   stock: number
   sold: number
   status: 'active' | 'suspended'
 }
 
-export { IProduct, IProductSKU, ProductCategory }
+export { IProduct, IProductSKU }

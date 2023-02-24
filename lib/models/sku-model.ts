@@ -1,6 +1,6 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model } from 'mongoose'
 
-import type { IProductSKU } from '@type/product';
+import type { IProductSKU } from '@type/product'
 
 const schema = new Schema<IProductSKU>(
   {
@@ -26,13 +26,6 @@ const schema = new Schema<IProductSKU>(
       required: true,
       default: 0,
     },
-    tags: {
-      type: String,
-      required: true,
-      trim: true,
-      default: 'none',
-      match: [/^new$|^hot$|^sale$|^recommend$|^none$/, 'Invalid tags'],
-    },
     stock: {
       type: Number,
       required: true,
@@ -53,8 +46,8 @@ const schema = new Schema<IProductSKU>(
     collection: 'product_skus',
     timestamps: true,
   }
-);
+)
 
-const Address = model<IProductSKU>('Product_SKUs', schema);
+const Address = model<IProductSKU>('Product_SKUs', schema)
 
-export default Address;
+export default Address
