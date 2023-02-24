@@ -1,7 +1,7 @@
 // create mongoose user models
-import mongoose, { Schema } from "mongoose";
-import bcrypt from "bcryptjs";
-import type { MemberDocument } from "@type/member";
+import mongoose, { Schema } from 'mongoose'
+import bcrypt from 'bcryptjs'
+import type { MemberDocument } from '@type/member'
 
 const schema = new Schema<MemberDocument>(
   {
@@ -40,43 +40,29 @@ const schema = new Schema<MemberDocument>(
       trim: true,
       maxlength: 10,
     },
-    dateOfBirth: {
-      type: Date,
-      required: false,
-    },
-    dateCreated: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
     status: {
       type: String,
       required: true,
-      default: "active",
+      default: 'active',
     },
-    cartId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Carts'
-    }
   },
   {
-    collection: "members",
+    collection: 'members',
     timestamps: true,
   }
-);
+)
 
 schema.methods.encryptPassword = (password: string): string => {
-  const salt = bcrypt.genSaltSync(8);
-  const hashPassword = bcrypt.hashSync(password, salt);
-  return hashPassword;
-};
+  const salt = bcrypt.genSaltSync(8)
+  const hashPassword = bcrypt.hashSync(password, salt)
+  return hashPassword
+}
 
 schema.methods.checkPassword = function (password: string): boolean {
-  const isValid = bcrypt.compareSync(password, this.password);
-  return isValid;
-};
+  const isValid = bcrypt.compareSync(password, this.password)
+  return isValid
+}
 
+const Member = mongoose.model<MemberDocument>('Members', schema)
 
-
-
-export default mongoose.model<MemberDocument>("Members", schema);
+export default Member
