@@ -1,5 +1,6 @@
 import { checkSchema } from 'express-validator'
 import type { Schema } from 'express-validator'
+import { TEL_REGEX } from '@utils/validate-pattern'
 
 const memberLoginSchema: Schema = {
   username: {
@@ -58,6 +59,10 @@ const memberRegisterSchema: Schema = {
     isLength: {
       errorMessage: 'Phone number must be 10 characters',
       options: { min: 10, max: 10 },
+    },
+    matches: {
+      errorMessage: 'Invalid phone number',
+      options: TEL_REGEX,
     },
   },
 }
