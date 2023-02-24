@@ -8,8 +8,7 @@ import logger from 'morgan'
 import mongoose from 'mongoose'
 import passport from 'passport'
 
-import { memberRouter } from '@routes'
-
+import { memberRouter, productRouter } from '@routes'
 import { env } from '@config'
 import errorHandler from '@middlewares/error-handling'
 
@@ -24,9 +23,11 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(passport.initialize())
 
-// app.use('/', router)
+app.use('/', (req, res, next) => {
+  res.send('Welcome to the stellair-shop API')
+})
 app.use('/member', memberRouter)
-// app.use('/product', router.product)
+app.use('/product', productRouter)
 
 app.use(errorHandler)
 
