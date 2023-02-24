@@ -23,11 +23,12 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(passport.initialize())
 
-app.use('/', (req, res, next) => {
-  res.send('🛍️Welcome to the stellair-shop API. Shop is open now!')
-})
 app.use('/member', memberRouter)
 app.use('/product', productRouter)
+
+app.use('/', (req, res) => {
+  res.send('🛍️Welcome to the stellair-shop API. Shop is open now!')
+})
 
 app.use(errorHandler)
 
