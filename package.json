@@ -5,8 +5,9 @@
   "author": "thitiwat-t",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd -r tsconfig-paths/register --rs ./src/bin/www",
-    "start": "ts-node -r tsconfig-paths/register ./src/bin/www",
+    "dev": "tsnd -r tsconfig-paths/register --rs ./bin/www",
+    "start": "ts-node -r tsconfig-paths/register ./bin/www",
+    "prettier-format": "prettier --config .prettierrc 'lib/**/*.ts' 'bin/**/*.ts' --write",
     "test": ""
   },
   "dependencies": {
