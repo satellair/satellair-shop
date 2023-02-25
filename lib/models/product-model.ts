@@ -13,7 +13,6 @@ const productSchema = new Schema<IProduct>(
       required: true,
       trim: true,
       default: 'others',
-      // match with ProductCategory type
       match: [
         /^tops$|^bottoms$|^skirts$|^sportwares$|^innerwares$|^dresses$|^accessories$|^bags$|^others$/,
         'Invalid category',
@@ -24,7 +23,6 @@ const productSchema = new Schema<IProduct>(
       required: true,
       trim: true,
       default: 'none',
-      // match with ProductTags type
       match: [/^new$|^hot$|^sale$|^recommend$|^none$/, 'Invalid tags'],
     },
     description: {
