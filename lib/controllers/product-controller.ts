@@ -7,13 +7,9 @@ import { isOid } from '@utils'
 import type { ErrorHandler, ExpressController } from '@type'
 import type { IProduct, IProductSKU } from '@type/product'
 
-interface ProductWithVariant extends IProduct {
-  variants: IProductSKU[]
-}
-
 const listProduct: ExpressController = async (req, res, next) => {
   try {
-    const products: IProduct[] = await Product.find().select('name category tag status').sort({ _id: -1 })
+    const products: IProduct[] = await Product.find().select('_id name category tag status').sort({ _id: -1 })
     res.status(statusCode.OK).json({
       data: products,
     })
@@ -120,15 +116,16 @@ const deleteProduct: ExpressController = async (req, res, next) => {
 const productDetail: ExpressController = async (req, res, next) => {
   try {
     const { id } = req.params
-    const product: ProductWithVariant | null = await Product.findById(id)
+    const product = await Product.findById(id).select('_id name category tag status description')
     if (!product) {
       const err: ErrorHandler = new Error('Product not found')
       err.statusCode = statusCode.NOT_FOUND
       throw err
     }
-    const variants: IProductSKU[] = await ProductSKU.find({ product_id: id })
-    product.variants = variants || []
-    res.status(statusCode.OK).json({ product })
+    const variants: IProductSKU[] = await ProductSKU.find({ product_id: id }).select(
+      '_id color size price stock sold status'
+    )
+    res.status(statusCode.OK).json({ data: { product, variants } })
   } catch (error) {
     next(error)
   }

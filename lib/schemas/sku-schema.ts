@@ -32,9 +32,6 @@ const skuInsertSchema: Schema = {
     },
   },
   stock: {
-    notEmpty: {
-      errorMessage: 'Please enter product stock',
-    },
     isNumeric: {
       errorMessage: 'Stock must be a number',
     },
