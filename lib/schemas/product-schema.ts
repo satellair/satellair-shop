@@ -14,7 +14,7 @@ const productCategory: ProductCategory[] = [
   'others',
 ]
 
-const productTags: ProductTags[] = ['new', 'hot', 'sale', 'recommend']
+const productTags: ProductTags[] = ['new', 'hot', 'sale', 'recommend', 'none']
 
 const productInsertSchema: Schema = {
   name: {
