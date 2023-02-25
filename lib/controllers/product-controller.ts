@@ -104,6 +104,7 @@ const deleteProduct: ExpressController = async (req, res, next) => {
       err.statusCode = statusCode.BAD_REQUEST
       throw err
     } else {
+      const variants = await ProductSKU.deleteMany({ product_id: id })
       res.status(statusCode.OK).json({
         message: 'Product deleted successfully',
       })
@@ -165,7 +166,7 @@ const addSKU: ExpressController = async (req, res, next) => {
 const updateSKU: ExpressController = async (req, res, next) => {
   try {
     const { id } = req.params
-    const { product_id, color, size, price, stock, sold, status } = req.body as IProductSKU
+    const { color, size, price, stock, sold, status } = req.body as IProductSKU
 
     if (!isOid(id)) {
       const err: ErrorHandler = new Error('Invalid SKU id')
