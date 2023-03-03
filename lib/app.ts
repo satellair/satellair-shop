@@ -8,9 +8,12 @@ import logger from 'morgan'
 import mongoose from 'mongoose'
 import passport from 'passport'
 
+import { serverStatus } from 'express-now'
+
 import { memberRouter, productRouter } from '@routes'
 import { env } from '@config'
-import errorHandler from '@middlewares/error-handling'
+import { isLogin, isAdmin, errorHandler } from '@middlewares'
+
 
 const app: Express = express()
 
@@ -23,6 +26,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(passport.initialize())
 
+app.use('/status', serverStatus(app), isLogin, isAdmin)
 app.use('/member', memberRouter)
 app.use('/product', productRouter)
 
