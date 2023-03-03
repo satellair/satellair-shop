@@ -26,7 +26,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(passport.initialize())
 
-app.use('/status', serverStatus(app), isLogin, isAdmin)
+app.use('/status', isLogin, isAdmin, serverStatus(app))
 app.use('/member', memberRouter)
 app.use('/product', productRouter)
 
